@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f7f4">
+  <meta name="description" content="فضاء دراسة السنة الثالثة ثانوي في الجزائر: دروس، اختبارات، وروابطك في مكان واحد.">
+  <title>مِداد | فضاؤك للدراسة</title>
+  <link rel="stylesheet" href="./src/style.css">
+</head>
+<body>
+<div class="app">
+  <aside>
+    <div class="brand"><div class="brand-mark">م</div><div><strong>مِداد</strong><small>خطوتك نحو النجاح</small></div></div>
+    <div><div class="nav-label">القائمة</div><nav class="nav"><button class="active" id="navHome"><span class="ico">⌂</span>الرئيسية</button><button onclick="document.getElementById('subjectSection').scrollIntoView({behavior:'smooth'})"><span class="ico">▦</span>المواد الدراسية</button><button onclick="document.getElementById('linksPanel').scrollIntoView({behavior:'smooth'})"><span class="ico">↗</span>روابط الدراسة</button><button onclick="document.getElementById('quizPanel').scrollIntoView({behavior:'smooth'})"><span class="ico">✓</span>الاختبارات</button></nav></div>
+    <div class="sidebar-foot"><b>كل يوم خطوة ✨</b><p>نظّم مراجعتك، أضف مصادرك، وتقدّم نحو هدفك بثبات.</p></div>
+  </aside>
+  <main>
+    <div class="topbar"><div class="crumb">فضاء الدراسة <span style="color:#c5cec8">/</span> السنة الثالثة ثانوي</div><div class="user"><span id="authStatus">حفظ محلي</span><button class="secondary" id="authOpen">تسجيل الدخول</button><div class="avatar" id="avatar">ط</div></div></div>
+    <section class="home active" id="homeView">
+      <div class="hero"><div class="hero-copy"><div class="eyebrow">السنة الثالثة ثانوي · التعليم الجزائري</div><h1>مساحتك للدراسة،<br>وخطوتك القادمة نحو النجاح.</h1><p>اجمع دروسك وروابطك واختبر فهمك في مكان واحد.</p></div><div class="hero-chip">✦ تعلّم بهدوء، تقدّم بثقة</div></div>
+      <div class="section-head" id="subjectSection"><div><h2>موادك الدراسية</h2><p>اختر مادة لعرض محتواها وروابطها واختباراتها</p></div><label class="search"><span>⌕</span><input id="search" placeholder="ابحث عن مادة..." aria-label="ابحث عن مادة"></label></div>
+      <div class="subjects" id="subjects"></div>
+      <div class="bottom-grid">
+        <section class="panel" id="linksPanel"><div class="panel-title"><h3>روابط الدراسة</h3><span class="quiet" id="linkCount">مساحتك لمصادرك</span></div><div id="linkList"></div></section>
+        <section class="panel" id="quizPanel"><div class="panel-title"><h3>اختبر فهمك</h3><span class="quiet">تدريب سريع</span></div><div class="quiz-row"><div class="quiz-symbol">✎</div><div><b>اختبارات المواد</b><p>اختبارات قصيرة مبنية على محاور كل مادة.</p></div><button class="quiz-action" onclick="document.getElementById('subjectSection').scrollIntoView({behavior:'smooth'})">اختر مادة ←</button></div></section>
+      </div>
+    </section>
+    <section class="detail" id="detailView"><button class="back" onclick="goHome()">→ العودة إلى المواد</button><div id="detailContent"></div></section>
+  </main>
+</div>
+<div class="modal-back" id="modal"><div class="modal"><h2>أضف رابطًا للدراسة</h2><p>احتفظ بمصدرك الدراسي داخل المادة المناسبة.</p><label for="linkSubject">المادة</label><select id="linkSubject"></select><label for="linkName">اسم الرابط</label><input id="linkName" placeholder="مثال: شرح الوحدة الأولى"><label for="linkUrl">الرابط</label><input id="linkUrl" type="url" placeholder="https://..."><div class="modal-actions"><button class="primary" id="saveLink">حفظ الرابط</button><button class="secondary" id="cancelModal">إلغاء</button></div></div></div>
+<div class="modal-back" id="authModal"><div class="modal"><h2>حسابك الدراسي</h2><p id="authHint">سجّل الدخول لحفظ روابطك على حسابك ومزامنتها بين أجهزتك.</p><div class="empty-note" id="authSetupNote" style="display:none">لم يُربط هذا الموقع بمشروع Supabase بعد. ضع رابط مشروعك ومفتاح النشر العام في الملف site/src/supabaseConfig.js، ثم أعد تحميل الموقع.</div><label for="authEmail">البريد الإلكتروني</label><input id="authEmail" type="email" autocomplete="email" placeholder="name@example.com"><label for="authPassword">كلمة المرور</label><input id="authPassword" type="password" autocomplete="current-password" placeholder="8 أحرف على الأقل"><div class="modal-actions"><button class="primary" id="signInBtn">دخول</button><button class="secondary" id="signUpBtn">إنشاء حساب</button><button class="secondary" id="signOutBtn" style="display:none">تسجيل الخروج</button><button class="secondary" id="closeAuth">إغلاق</button></div></div></div>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
