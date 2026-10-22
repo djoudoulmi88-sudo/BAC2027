@@ -136,10 +136,78 @@ function renderMonthlyPlans(){
  }).join('');
 }
 
+const bacStoryLibrary={
+ math:{hub:'https://www.bac-story.com/resources/sci/math',units:[
+  [{label:'محور الدوال',url:'https://www.bac-story.com/resources/sci/math/dawal'}],
+  [{label:'محور الدوال',url:'https://www.bac-story.com/resources/sci/math/dawal'}],
+  [{label:'محور المتتاليات العددية',url:'https://www.bac-story.com/resources/sci/math/sequences'}],
+  [{label:'محور الدوال والحساب التكاملي',url:'https://www.bac-story.com/resources/sci/math/dawal'}],
+  [{label:'محور الاحتمالات',url:'https://www.bac-story.com/resources/sci/math/proba'},{label:'محور الأعداد المركبة',url:'https://www.bac-story.com/resources/sci/math/complex'}]
+ ]},
+ physics:{hub:'https://www.bac-story.com/resources/sci/physics',units:[
+  [{label:'وحدة المتابعة الزمنية',url:'https://www.bac-story.com/resources/sci/physics'}],
+  [{label:'وحدة الميكانيك',url:'https://www.bac-story.com/resources/sci/physics'}],
+  [{label:'وحدة الظواهر الكهربائية',url:'https://www.bac-story.com/resources/sci/physics/electricity'}],
+  [{label:'وحدتا الكيمياء والتحولات النووية',url:'https://www.bac-story.com/resources/sci/physics'}]
+ ]},
+ science:{hub:'https://www.bac-story.com/resources/sci/science',units:[
+  [{label:'وحدة تركيب البروتين',url:'https://www.bac-story.com/resources/sci/science/tarkib-protein'}],
+  [{label:'بنية ووظيفة البروتين',url:'https://www.bac-story.com/resources/sci/science/bonya-protein'},{label:'وحدة الإنزيمات',url:'https://www.bac-story.com/resources/sci/science/inzimat'}],
+  [{label:'وحدة المناعة',url:'https://www.bac-story.com/resources/sci/science/mana3a'},{label:'الاتصال العصبي',url:'https://www.bac-story.com/resources/sci/science/itisal-3asabi'}],
+  [{label:'التركيب الضوئي',url:'https://www.bac-story.com/resources/sci/science/tarkib-daw-i'},{label:'التنفس والتخمر',url:'https://www.bac-story.com/resources/sci/science/tanafos'}]
+ ]},
+ islamic:{hub:'https://www.bac-story.com/resources/sci/islamics',units:[
+  [{label:'تدريبات تطبيقية وأسئلة الدروس',url:'https://www.bac-story.com/resources/sci/islamics/tasks'}],
+  [{label:'تدريبات تطبيقية وأسئلة الدروس',url:'https://www.bac-story.com/resources/sci/islamics/tasks'}],
+  [{label:'تدريبات تطبيقية وأسئلة الدروس',url:'https://www.bac-story.com/resources/sci/islamics/tasks'}],
+  [{label:'تدريبات تطبيقية وأسئلة الدروس',url:'https://www.bac-story.com/resources/sci/islamics/tasks'}]
+ ]},
+ history:{hub:'https://www.bac-story.com/resources/sci/hist-geo',units:[
+  [{label:'ملخصات التاريخ',url:'https://www.bac-story.com/resources/sci/hist-geo/history-summaries'}],
+  [{label:'ملخصات التاريخ',url:'https://www.bac-story.com/resources/sci/hist-geo/history-summaries'}],
+  [{label:'ملخصات التاريخ',url:'https://www.bac-story.com/resources/sci/hist-geo/history-summaries'}],
+  [{label:'ملخصات الجغرافيا',url:'https://www.bac-story.com/resources/sci/hist-geo/geography-summaries'}],
+  [{label:'ملخصات الجغرافيا',url:'https://www.bac-story.com/resources/sci/hist-geo/geography-summaries'}]
+ ]},
+ arabic:{hub:'https://www.bac-story.com/resources/sci/arabic',units:[
+  [{label:'المحاور الشعرية',url:'https://www.bac-story.com/resources/sci/arabic/chi3r'}],
+  [{label:'المحاور النثرية',url:'https://www.bac-story.com/resources/sci/arabic/nathr'}],
+  [{label:'دروس القواعد والبلاغة',url:'https://www.bac-story.com/resources/sci/arabic/grammar'}],
+  [{label:'المحاور الشعرية والنثرية والقواعد',url:'https://www.bac-story.com/resources/sci/arabic'}]
+ ]},
+ french:{hub:'https://www.bac-story.com/resources/sci/french',units:[
+  [{label:'النصوص والملخصات الفرنسية',url:'https://www.bac-story.com/resources/sci/french'}],
+  [{label:'القواعد وLe compte rendu',url:'https://www.bac-story.com/resources/sci/french'}],
+  [{label:'مواضيع تحضيرية وتعبير',url:'https://www.bac-story.com/resources/sci/french'}]
+ ]},
+ philosophy:{hub:'https://www.bac-story.com/resources/sci/philo',units:[
+  [{label:'المنهجيات الفلسفية',url:'https://www.bac-story.com/resources/sci/philo/methodology'}],
+  [{label:'مقالات الأساتذة في فلسفة العلوم',url:'https://www.bac-story.com/resources/sci/philo/teachers-articles/methodologies'}],
+  [{label:'مقالات ومخططات الفلسفة',url:'https://www.bac-story.com/resources/sci/philo/teachers-articles'}],
+  [{label:'المنهجيات والمقالات الفلسفية',url:'https://www.bac-story.com/resources/sci/philo'}]
+ ]},
+ english:{hub:'https://www.bac-story.com/resources/sci/english',units:[
+  [{label:'Ethics in Business',url:'https://www.bac-story.com/resources/sci/english/ethics-in-business'}],
+  [{label:'Safety First',url:'https://www.bac-story.com/resources/sci/english/safety-first'}],
+  [{label:'Astronomy',url:'https://www.bac-story.com/resources/sci/english/astronomy'}],
+  [{label:'ملفات اللغة الإنجليزية والقواعد',url:'https://www.bac-story.com/resources/sci/english'}]
+ ]}
+};
+
 let links=[];let currentUser=null;const cloudEnabled=Boolean(supabase);
 function renderSubjects(q=''){const box=document.getElementById('subjects');box.innerHTML='';subjects.filter(s=>s.name.includes(q.trim())).forEach(s=>{const n=links.filter(l=>l.subject===s.id).length;const el=document.createElement('article');el.className=`subject ${s.cls}`;el.innerHTML=`<div class="subject-top"><div class="subject-icon">${s.icon}</div><span class="count">${n} رابط${n===1?'':'ات'}</span></div><h3>${s.name}</h3><p>${s.about}</p><div class="go">افتح المادة ←</div>`;el.onclick=()=>openSubject(s.id);box.appendChild(el)})}
 function renderLinks(){const box=document.getElementById('linkList');document.getElementById('linkCount').textContent=links.length?`${links.length} رابط`:'مساحتك لمصادرك';if(!links.length){box.innerHTML='<div class="link-empty"><div><strong>مصادرك الدراسية في مكان واحد</strong><p>أضف روابط الشروحات والملخصات التي تساعدك في المراجعة.</p></div><button class="primary" onclick="openModal()">＋ أضف رابطًا</button></div>';return}box.innerHTML=`<div style="display:flex;justify-content:flex-start;margin-bottom:11px"><button class="primary" onclick="openModal()">＋ أضف رابطًا</button></div>`+links.slice().reverse().map(l=>{const s=subjects.find(x=>x.id===l.subject);return `<div style="display:flex;align-items:center;gap:10px;padding:11px 3px;border-top:1px solid #eff2ee"><span class="subject-icon ${s.cls}" style="width:34px;height:34px;font-size:14px">${s.icon}</span><div style="min-width:0;flex:1"><a href="${safe(l.url)}" target="_blank" rel="noopener" style="font-size:12px;color:#1f6652;font-weight:700;text-decoration:none">${escapeHtml(l.name)}</a><div class="quiet">${s.name}</div></div><button class="secondary delete-link" onclick="deleteLink('${escapeHtml(l.id)}')" aria-label="حذف الرابط">حذف</button></div>`}).join('')}
-function openSubject(id){const s=subjects.find(x=>x.id===id),subjectLinks=links.filter(l=>l.subject===id),c=curriculum[id];document.getElementById('homeView').classList.remove('active');document.getElementById('detailView').classList.add('active');document.getElementById('detailContent').innerHTML=`<div class="detail-head ${s.cls}"><div class="subject-icon">${s.icon}</div><div><h1>${s.name}</h1><p>السنة الثالثة ثانوي · ${id==='math'||id==='physics'||id==='science'?'شعبة علوم تجريبية':'التعليم الجزائري'}</p></div><button class="primary" style="margin-right:auto" onclick="openModal('${id}')">＋ أضف رابطًا</button></div><div class="detail-sections"><section class="panel"><div class="panel-title"><h3>الدروس والمحاور</h3><span class="quiet">${c.units.length} محاور</span></div><div class="lesson-grid">${c.units.map((u,i)=>`<article class="lesson-card"><small>المحور ${i+1}</small><h4>${u[0]}</h4><p>${u[1]}</p><details><summary>أهداف التعلّم</summary><p>افهم المصطلحات والأفكار الأساسية، اربطها بأمثلة وتمارين، ثم راجع أسئلة الاختبار في هذه المادة.</p></details></article>`).join('')}</div></section><section class="panel"><div class="panel-title"><h3>اختبار قصير</h3><span class="quiet">${c.quiz.length} أسئلة</span></div><p class="quiet" style="margin-top:-7px">اختر إجابة لكل سؤال؛ يظهر التصحيح والنتيجة مباشرة.</p><div class="quiz-box" id="quiz-${id}"><h4>اختبار ${s.name}</h4>${c.quiz.map((q,i)=>`<div class="q-item" data-q="${i}"><p>${i+1}. ${q[0]}</p><div class="q-choices">${q[1].map((a,j)=>`<button onclick="answerQuiz('${id}',${i},${j},this)">${a}</button>`).join('')}</div></div>`).join('')}<div class="quiz-result" id="result-${id}"></div><button class="secondary" onclick="resetQuiz('${id}')">إعادة الاختبار</button></div><div class="panel-title" style="margin-top:20px"><h3>روابط المادة</h3><button class="quiz-action" onclick="openModal('${id}')">＋ أضف رابطًا</button></div>${subjectLinks.length?subjectLinks.map(l=>`<div style="display:flex;align-items:center;gap:8px;font-size:12px;padding:8px 0"><a href="${safe(l.url)}" target="_blank" rel="noopener" style="flex:1">${escapeHtml(l.name)}</a><button class="secondary delete-link" onclick="deleteLink('${escapeHtml(l.id)}')">حذف</button></div>`).join(''):'<div class="empty-note">أضف روابط الشروحات والملخصات التي تساعدك في مراجعة هذه المادة.</div>'}</section></div><p class="source-note">المحاور مرتبة وفق ملفات التدرجات السنوية المرفقة (2022–2023).</p>`;window.scrollTo({top:0,behavior:'smooth'})}
+function openSubject(id){
+ const s=subjects.find(x=>x.id===id),subjectLinks=links.filter(l=>l.subject===id),c=curriculum[id];
+ const library=bacStoryLibrary[id];
+ document.getElementById('homeView').classList.remove('active');document.getElementById('detailView').classList.add('active');
+ document.getElementById('detailContent').innerHTML=`<div class="detail-head ${s.cls}"><div class="subject-icon">${s.icon}</div><div><h1>${s.name}</h1><p>السنة الثالثة ثانوي · ${id==='math'||id==='physics'||id==='science'?'شعبة علوم تجريبية':'التعليم الجزائري'}</p></div><button class="primary" style="margin-right:auto" onclick="openModal('${id}')">＋ أضف رابطًا</button></div><div class="detail-sections"><section class="panel"><div class="panel-title"><h3>الدروس والمحاور</h3><span class="quiet">${c.units.length} محاور</span></div><div class="lesson-grid">${c.units.map((u,i)=>{
+  const sources=library.units[i]||[];
+  const sourceLinks=sources.map(r=>`<a href="${r.url}" target="_blank" rel="noopener">${r.label} ↗</a>`).join('');
+  return `<article class="lesson-card"><small>المحور ${i+1}</small><h4>${u[0]}</h4><p>${u[1]}</p><details><summary>أهداف التعلّم</summary><p>افهم المصطلحات والأفكار الأساسية، اربطها بأمثلة وتمارين، ثم راجع أسئلة الاختبار في هذه المادة.</p></details><div class="lesson-resources"><span>مصادر BAC STORY لهذا المحور</span><div>${sourceLinks||`<a href="${library.hub}" target="_blank" rel="noopener">ملخصات وتمارين المادة ↗</a>`}</div><a class="exam-resource" href="${library.hub}" target="_blank" rel="noopener">مواضيع واختبارات المادة ↗</a></div>${id==='math'&&i===0?`<div class="lesson-resources video-resource"><span>شرح مرئي</span><div><a href="https://www.youtube.com/watch?v=dB40VQYygJE&list=PLDx_F4dKxvNKCL8PXWGMdMEPs7kXOXZff" target="_blank" rel="noopener">شرح الدوال العددية · الوحدة 01 ↗</a><a href="https://www.youtube.com/playlist?list=PLDx_F4dKxvNKCL8PXWGMdMEPs7kXOXZff" target="_blank" rel="noopener">قائمة التشغيل وقناة الأستاذ عبد الباسط ↗</a></div></div>`:''}</article>`
+ }).join('')}</div></section><section class="panel"><div class="panel-title"><h3>اختبار قصير</h3><span class="quiet">${c.quiz.length} أسئلة</span></div><p class="quiet" style="margin-top:-7px">اختر إجابة لكل سؤال؛ يظهر التصحيح والنتيجة مباشرة.</p><div class="quiz-box" id="quiz-${id}"><h4>اختبار ${s.name}</h4>${c.quiz.map((q,i)=>`<div class="q-item" data-q="${i}"><p>${i+1}. ${q[0]}</p><div class="q-choices">${q[1].map((a,j)=>`<button onclick="answerQuiz('${id}',${i},${j},this)">${a}</button>`).join('')}</div></div>`).join('')}<div class="quiz-result" id="result-${id}"></div><button class="secondary" onclick="resetQuiz('${id}')">إعادة الاختبار</button></div><a class="external-exams" href="${library.hub}" target="_blank" rel="noopener">شاهد مواضيع واختبارات ${s.name} في BAC STORY ↗</a><div class="panel-title" style="margin-top:20px"><h3>روابط المادة</h3><button class="quiz-action" onclick="openModal('${id}')">＋ أضف رابطًا</button></div>${subjectLinks.length?subjectLinks.map(l=>`<div style="display:flex;align-items:center;gap:8px;font-size:12px;padding:8px 0"><a href="${safe(l.url)}" target="_blank" rel="noopener" style="flex:1">${escapeHtml(l.name)}</a><button class="secondary delete-link" onclick="deleteLink('${escapeHtml(l.id)}')">حذف</button></div>`).join(''):'<div class="empty-note">أضف روابط الشروحات والملخصات التي تساعدك في مراجعة هذه المادة.</div>'}</section></div><p class="source-note">مصادر الدروس والتمارين ومواضيع البكالوريا الخارجية مرتبطة بموقع BAC STORY. الاختبار القصير أعلاه تفاعلي داخل مِداد.</p>`;
+ window.scrollTo({top:0,behavior:'smooth'});
+}
 function answerQuiz(id,qi,choice,button){const c=curriculum[id],q=c.quiz[qi],row=button.closest('.q-item');if(row.dataset.done)return;row.dataset.done='1';const btns=row.querySelectorAll('button');btns[q[2]].classList.add('correct');btns[q[2]].dataset.chosen=choice===q[2]?'yes':'no';if(choice!==q[2]){button.classList.add('wrong');button.dataset.chosen='selected'}const done=document.querySelectorAll(`#quiz-${id} .q-item[data-done="1"]`).length;if(done===c.quiz.length){const score=[...document.querySelectorAll(`#quiz-${id} .q-item`)].filter((el,i)=>el.querySelectorAll('button')[c.quiz[i][2]].dataset.chosen==='yes').length;document.getElementById(`result-${id}`).textContent=`نتيجتك: ${score} من ${c.quiz.length} — ${score===c.quiz.length?'ممتاز!':score>=c.quiz.length/2?'أحسنت، راجع الإجابات غير الصحيحة.':'راجع المحاور ثم أعد المحاولة.'}`;}}
 function resetQuiz(id){const box=document.getElementById(`quiz-${id}`);box.querySelectorAll('.q-item').forEach(row=>{delete row.dataset.done;row.querySelectorAll('button').forEach(b=>{b.classList.remove('correct','wrong');delete b.dataset.chosen})});document.getElementById(`result-${id}`).textContent=''}
 function goHome(){document.getElementById('detailView').classList.remove('active');document.getElementById('homeView').classList.add('active')}
