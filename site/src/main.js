@@ -114,6 +114,28 @@ english:{units:[
 ]}
 };
 
+const monthlyPlans=[
+ {month:'أكتوبر',key:'october',year:2026,file:'october.pdf',kind:'خطة التميز'},
+ {month:'نوفمبر',key:'november',year:2026,file:'november.pdf',kind:'خطة التميز'},
+ {month:'ديسمبر',key:'december',year:2026,file:'december.pdf',kind:'خطة الاستدراك'},
+ {month:'جانفي',key:'january',year:2027,file:'january.pdf',kind:'خطة التميز'},
+ {month:'فيفري',key:'february',year:2027,file:'february.pdf',kind:'خطة التميز'},
+ {month:'مارس',key:'march',year:2027,file:'march.pdf',kind:'خطة التميز'},
+ {month:'أفريل',key:'april',year:2027,file:'april.pdf',kind:'خطة التميز'}
+];
+function renderMonthlyPlans(){
+ const today=new Date();today.setHours(0,0,0,0);
+ const box=document.getElementById('monthlyPlans');
+ const active=monthlyPlans.filter(p=>new Date(p.year,({october:9,november:10,december:11,january:0,february:1,march:2,april:3})[p.key],1)<=today);
+ const next=monthlyPlans.find(p=>!active.includes(p));
+ document.getElementById('plansHint').textContent=next?`تُفتح خطة ${next.month} تلقائيًا يوم 1 ${next.month} ${next.year}، وتظل الخطط السابقة متاحة.`:'اكتملت خطط هذه الفترة؛ جميع الخطط الشهرية متاحة للمراجعة.';
+ box.innerHTML=monthlyPlans.map((p,i)=>{
+  const opened=active.includes(p);
+  const label=opened?'الخطة متاحة':`تُفتح في 1 ${p.month} ${p.year}`;
+  return `<article class="plan-card ${opened?'is-open':'is-locked'}"><div class="plan-card-top"><span class="plan-number">${String(i+1).padStart(2,'0')}</span><span class="plan-state">${opened?'متاحة الآن':'مقفلة مؤقتًا'}</span></div><h3>${p.month} ${p.year}</h3><p>${p.kind} · برنامج الشهر</p><div class="plan-card-bottom"><span>${label}</span>${opened?`<a class="plan-open" href="./plans/${p.file}" target="_blank" rel="noopener">افتح الخطة <span aria-hidden="true">↗</span></a>`:'<span class="plan-lock" aria-label="الخطة غير متاحة بعد">🔒</span>'}</div></article>`
+ }).join('');
+}
+
 let links=[];let currentUser=null;const cloudEnabled=Boolean(supabase);
 function renderSubjects(q=''){const box=document.getElementById('subjects');box.innerHTML='';subjects.filter(s=>s.name.includes(q.trim())).forEach(s=>{const n=links.filter(l=>l.subject===s.id).length;const el=document.createElement('article');el.className=`subject ${s.cls}`;el.innerHTML=`<div class="subject-top"><div class="subject-icon">${s.icon}</div><span class="count">${n} رابط${n===1?'':'ات'}</span></div><h3>${s.name}</h3><p>${s.about}</p><div class="go">افتح المادة ←</div>`;el.onclick=()=>openSubject(s.id);box.appendChild(el)})}
 function renderLinks(){const box=document.getElementById('linkList');document.getElementById('linkCount').textContent=links.length?`${links.length} رابط`:'مساحتك لمصادرك';if(!links.length){box.innerHTML='<div class="link-empty"><div><strong>مصادرك الدراسية في مكان واحد</strong><p>أضف روابط الشروحات والملخصات التي تساعدك في المراجعة.</p></div><button class="primary" onclick="openModal()">＋ أضف رابطًا</button></div>';return}box.innerHTML=`<div style="display:flex;justify-content:flex-start;margin-bottom:11px"><button class="primary" onclick="openModal()">＋ أضف رابطًا</button></div>`+links.slice().reverse().map(l=>{const s=subjects.find(x=>x.id===l.subject);return `<div style="display:flex;align-items:center;gap:10px;padding:11px 3px;border-top:1px solid #eff2ee"><span class="subject-icon ${s.cls}" style="width:34px;height:34px;font-size:14px">${s.icon}</span><div style="min-width:0;flex:1"><a href="${safe(l.url)}" target="_blank" rel="noopener" style="font-size:12px;color:#1f6652;font-weight:700;text-decoration:none">${escapeHtml(l.name)}</a><div class="quiet">${s.name}</div></div><button class="secondary delete-link" onclick="deleteLink('${escapeHtml(l.id)}')" aria-label="حذف الرابط">حذف</button></div>`}).join('')}
@@ -132,5 +154,6 @@ async function handleAuth(action){if(!supabase)return;const email=document.getEl
 async function deleteLink(id){try{await removeLink(currentUser,id);await refreshLinks();showToast('تم حذف الرابط')}catch(error){showToast(error.message||'تعذر حذف الرابط')}}
 document.getElementById('search').addEventListener('input',e=>renderSubjects(e.target.value));document.getElementById('cancelModal').onclick=closeModal;document.getElementById('modal').addEventListener('click',e=>{if(e.target.id==='modal')closeModal()});document.getElementById('authOpen').onclick=openAuth;document.getElementById('closeAuth').onclick=()=>document.getElementById('authModal').classList.remove('open');document.getElementById('authModal').addEventListener('click',e=>{if(e.target.id==='authModal')e.target.classList.remove('open')});document.getElementById('signInBtn').onclick=()=>handleAuth('signIn');document.getElementById('signUpBtn').onclick=()=>handleAuth('signUp');document.getElementById('signOutBtn').onclick=async()=>{const {error}=await supabase.auth.signOut();if(error)showToast(error.message);else{document.getElementById('authModal').classList.remove('open');showToast('تم تسجيل الخروج')}};document.getElementById('saveLink').onclick=async()=>{const name=document.getElementById('linkName').value.trim(),url=safe(document.getElementById('linkUrl').value.trim()),subject=document.getElementById('linkSubject').value;if(!name||url==='#'){showToast('أدخل اسمًا ورابطًا صالحًا يبدأ بـ https://');return}try{await createLink(currentUser,{name,url,subject});document.getElementById('linkName').value='';document.getElementById('linkUrl').value='';closeModal();await refreshLinks();showToast('تم حفظ الرابط')}catch(error){showToast(error.message||'تعذر حفظ الرابط')}};
 Object.assign(window,{openSubject,openModal,goHome,showToast,answerQuiz,resetQuiz,deleteLink});
+renderMonthlyPlans();
 if(supabase){supabase.auth.getSession().then(({data})=>{currentUser=data.session?.user||null;updateAccountUi();refreshLinks()});supabase.auth.onAuthStateChange((_event,session)=>{setTimeout(()=>{currentUser=session?.user||null;updateAccountUi();refreshLinks()},0)})}else{updateAccountUi();refreshLinks()}
 renderSubjects();renderLinks();

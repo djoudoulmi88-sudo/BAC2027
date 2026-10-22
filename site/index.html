@@ -12,7 +12,7 @@
 <div class="app">
   <aside>
     <div class="brand"><div class="brand-mark">م</div><div><strong>مِداد</strong><small>خطوتك نحو النجاح</small></div></div>
-    <div><div class="nav-label">القائمة</div><nav class="nav"><button class="active" id="navHome"><span class="ico">⌂</span>الرئيسية</button><button onclick="document.getElementById('subjectSection').scrollIntoView({behavior:'smooth'})"><span class="ico">▦</span>المواد الدراسية</button><button onclick="document.getElementById('linksPanel').scrollIntoView({behavior:'smooth'})"><span class="ico">↗</span>روابط الدراسة</button><button onclick="document.getElementById('quizPanel').scrollIntoView({behavior:'smooth'})"><span class="ico">✓</span>الاختبارات</button></nav></div>
+    <div><div class="nav-label">القائمة</div><nav class="nav"><button class="active" id="navHome"><span class="ico">⌂</span>الرئيسية</button><button onclick="document.getElementById('subjectSection').scrollIntoView({behavior:'smooth'})"><span class="ico">▦</span>المواد الدراسية</button><button onclick="document.getElementById('plansSection').scrollIntoView({behavior:'smooth'})"><span class="ico">▤</span>الخطط الشهرية</button><button onclick="document.getElementById('linksPanel').scrollIntoView({behavior:'smooth'})"><span class="ico">↗</span>روابط الدراسة</button><button onclick="document.getElementById('quizPanel').scrollIntoView({behavior:'smooth'})"><span class="ico">✓</span>الاختبارات</button></nav></div>
     <div class="sidebar-foot"><b>كل يوم خطوة ✨</b><p>نظّم مراجعتك، أضف مصادرك، وتقدّم نحو هدفك بثبات.</p></div>
   </aside>
   <main>
@@ -21,6 +21,7 @@
       <div class="hero"><div class="hero-copy"><div class="eyebrow">السنة الثالثة ثانوي · التعليم الجزائري</div><h1>مساحتك للدراسة،<br>وخطوتك القادمة نحو النجاح.</h1><p>اجمع دروسك وروابطك واختبر فهمك في مكان واحد.</p></div><div class="hero-chip">✦ تعلّم بهدوء، تقدّم بثقة</div></div>
       <div class="section-head" id="subjectSection"><div><h2>موادك الدراسية</h2><p>اختر مادة لعرض محتواها وروابطها واختباراتها</p></div><label class="search"><span>⌕</span><input id="search" placeholder="ابحث عن مادة..." aria-label="ابحث عن مادة"></label></div>
       <div class="subjects" id="subjects"></div>
+      <section class="plans-section" id="plansSection"><div class="section-head"><div><h2>خطتك الدراسية شهرًا بشهر</h2><p id="plansHint">تُفتح خطة كل شهر مع بداية الشهر، وتظل الخطط السابقة متاحة.</p><p class="plans-source-note">رزنامة الفتح تتبع موسم 2026–2027؛ ملفات الخطط الأصلية محفوظة كما أُرسلت، وبعضها يحمل عنوان BAC 2025.</p></div><span class="plans-season">خطة التميز والاستدراك</span></div><div class="plans-grid" id="monthlyPlans"></div></section>
       <div class="bottom-grid">
         <section class="panel" id="linksPanel"><div class="panel-title"><h3>روابط الدراسة</h3><span class="quiet" id="linkCount">مساحتك لمصادرك</span></div><div id="linkList"></div></section>
         <section class="panel" id="quizPanel"><div class="panel-title"><h3>اختبر فهمك</h3><span class="quiet">تدريب سريع</span></div><div class="quiz-row"><div class="quiz-symbol">✎</div><div><b>اختبارات المواد</b><p>اختبارات قصيرة مبنية على محاور كل مادة.</p></div><button class="quiz-action" onclick="document.getElementById('subjectSection').scrollIntoView({behavior:'smooth'})">اختر مادة ←</button></div></section>
